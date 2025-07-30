@@ -1,55 +1,71 @@
-import CandidateForm from "./CandidateForm";
-import { useState } from "react";
+import React, { useState } from "react";
+import "./candidates.css";
 
 const dummyCandidates = [
   {
     id: 1,
     name: "Jacob William",
     email: "jacob.william@example.com",
-    phone: "252-555-0111",
+    phone: "(252) 555-0111",
     position: "Senior Developer",
     status: "New",
-    experience: "1+",
-    resumeUrl: "#",
+    experience: 1,
   },
   {
     id: 2,
-    name: "Guy Hawkins",
-    email: "kenzi.lawson@example.com",
-    phone: "907-555-0101",
-    position: "Human Resource Lead",
+    name: "Gary Hawkins",
+    email: "kent.lawson@example.com",
+    phone: "(207) 555-0101",
+    position: "Human Resource",
     status: "New",
-    experience: "2+",
-    resumeUrl: "#",
+    experience: 1,
+  },
+  {
+    id: 3,
+    name: "Arlene McCoy",
+    email: "arlene.mccoy@example.com",
+    phone: "(302) 555-0107",
+    position: "Full Time Designer",
+    status: "Selected",
+    experience: 2,
+  },
+  {
+    id: 4,
+    name: "Leslie Alexander",
+    email: "willie.jennings@example.com",
+    phone: "(207) 555-0119",
+    position: "Full Time Developer",
+    status: "Rejected",
+    experience: 0,
   },
 ];
 
 const CandidateList = () => {
-  const [candidates, setCandidates] = useState(dummyCandidates);
   const [showForm, setShowForm] = useState(false);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Candidates</h2>
-      <button
-        onClick={() => setShowForm(true)}
-        style={{
-          backgroundColor: "#5D3FD3",
-          color: "white",
-          padding: "10px 20px",
-          borderRadius: "5px",
-          marginBottom: "20px",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        + Add Candidate
-      </button>
-      {showForm && <CandidateForm onClose={() => setShowForm(false)} />}
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead style={{ backgroundColor: "#5D3FD3", color: "white" }}>
+    <div className="candidate-page">
+      <div className="candidate-header">
+        <div className="filters">
+          <select>
+            <option>Status</option>
+            <option>New</option>
+            <option>Selected</option>
+            <option>Rejected</option>
+          </select>
+          <select>
+            <option>Position</option>
+            <option>Senior Developer</option>
+            <option>Human Resource</option>
+            <option>Full Time Designer</option>
+          </select>
+        </div>
+       
+      </div>
+      <table className="candidate-table">
+        <thead>
           <tr>
-            <th>Sr. No.</th>
+            <th>Sr. no.</th>
             <th>Candidate Name</th>
             <th>Email Address</th>
             <th>Phone Number</th>
@@ -60,12 +76,9 @@ const CandidateList = () => {
           </tr>
         </thead>
         <tbody>
-          {candidates.map((c, index) => (
-            <tr
-              key={c.id}
-              style={{ textAlign: "center", borderBottom: "1px solid #ccc" }}
-            >
-              <td>{String(index + 1).padStart(2, "0")}</td>
+          {dummyCandidates.map((c, index) => (
+            <tr key={c.id}>
+              <td>{index + 1}</td>
               <td>{c.name}</td>
               <td>{c.email}</td>
               <td>{c.phone}</td>
@@ -77,16 +90,12 @@ const CandidateList = () => {
                   <option>Rejected</option>
                 </select>
               </td>
+              <td>{c.experience}</td>
               <td>
-                <select defaultValue={c.experience}>
-                  <option>0</option>
-                  <option>1+</option>
-                  <option>2+</option>
-                </select>
-              </td>
-              <td>
-                <button onClick={() => alert("Downloading...")}>📄</button>
-                <button onClick={() => alert("Deleting...")}>🗑️</button>
+                <button>Download Resume</button>
+                <button style={{ color: "red", marginLeft: "8px" }}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

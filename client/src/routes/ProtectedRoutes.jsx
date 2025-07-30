@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 
-export default  ProtectedRoutes =()=>{
+ const ProtectedRoutes =()=>{
     const token = localStorage.getItem('token');
     const expiry = Number(localStorage.getItem('auth_expiry'));
      
@@ -12,3 +12,4 @@ export default  ProtectedRoutes =()=>{
     }
 
 }
+export default ProtectedRoutes;

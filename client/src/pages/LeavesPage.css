@@ -1,0 +1,23 @@
+/* Leaves.css */
+
+.leaves-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.leaves-left {
+  flex: 2;
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.leaves-right {
+  flex: 1;
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}

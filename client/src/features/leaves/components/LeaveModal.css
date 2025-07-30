@@ -1,0 +1,148 @@
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Modal Container */
+.modal {
+  background: #fff;
+  padding: 24px 28px;
+  border-radius: 12px;
+  width: 600px;
+  max-width: 95%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-header h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Form Layout */
+.modal-form {
+  width: 100%;
+}
+
+.modal-form .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.modal-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-form .form-group.full-width {
+  grid-column: span 2;
+}
+
+/* Inputs */
+.modal-form .form-group label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #444;
+}
+
+.modal-form .form-group input,
+.modal-form .form-group select,
+.modal-form .form-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  resize: vertical;
+}
+
+/* Save Button */
+.save-btn {
+  background-color: #6a0dad;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+  background-color: #5a00c2;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 600px) {
+  .modal-form .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-form .form-group.full-width {
+    grid-column: span 1;
+  }
+
+  .modal {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+
+.required-label::after {
+  content: " *";
+  color: red;
+  font-weight: bold;
+  font-size: 1.1em;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+

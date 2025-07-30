@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useEffect, useRef } from "react";
 import "./candidates.css"; // Optional custom styling
 
 const CandidateForm = ({ onClose }) => {
@@ -6,19 +7,34 @@ const CandidateForm = ({ onClose }) => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
   } = useForm();
 
   const isDeclared = watch("declaration");
 
   const onSubmit = (data) => {
-    console.log("Submitted Data:", data);
-    // FormData logic will be added when backend is connected
+    console.log("Candidate Data:", data);
+    onClose();
   };
+
+  const modalRef = useRef();
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        onClose();
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [onClose]);
 
   return (
     <div className="modal-backdrop">
-      <div className="modal">
+      <div className="modal" ref={modalRef}>
+        <button className="close-btn" onClick={onClose}>
+          &times;
+        </button>
+      <div className="modal-content">
         <h2>Add New Candidate</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-row">
@@ -73,6 +89,7 @@ const CandidateForm = ({ onClose }) => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };
